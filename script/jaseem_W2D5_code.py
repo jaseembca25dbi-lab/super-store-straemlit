@@ -22,7 +22,7 @@ st.markdown("Interactive dashboard for Superstore sales analysis")
 @st.cache_data(ttl=600)  # Cache data for 10 minutes
 def load_data():
     return pd.read_csv(
-        r"C:\Users\jasee\Downloads\project 4.1\output\superstore_cleaned.csv",
+        r"output/superstore_cleaned.csv",
         parse_dates=["order_date", "ship_date"]
     )
 
@@ -209,7 +209,7 @@ with tab1:
     color="order_year",
     title="Monthly Sales Trend by Category"
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True, key="overview_monthly_sales")
 
 
 # By Category Tab
@@ -258,7 +258,7 @@ with tab2:
     hover_data=["sub_category"],
     title="Sales vs Profit by Category"
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True, key="category_scatter_sales_profit")
 
     st.subheader("Sub-Category Breakdown")
 
@@ -301,7 +301,7 @@ with tab3:
     title="Region Share of Total Profit"
     )
 
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True, key="region_profit_donut")
 
 with tab4:
     st.subheader("Quality Alerts")
@@ -385,13 +385,13 @@ if submitted:
         st.pyplot(fig_bar)
 
     elif chart_type == "Line Chart":
-        st.plotly_chart(fig_line, use_container_width=True)
+        st.plotly_chart(fig_line, use_container_width=True, key="export_line_chart")
 
     elif chart_type == "Scatter Plot":
-        st.plotly_chart(fig_scatter, use_container_width=True)
+        st.plotly_chart(fig_scatter, use_container_width=True, key="export_scatter_chart")
 
     elif chart_type == "Donut Chart":
-        st.plotly_chart(fig_donut, use_container_width=True)
+        st.plotly_chart(fig_donut, use_container_width=True, key="export_donut_chart")
 
 
 # =========================
